@@ -8,10 +8,10 @@ InfiniteScroller.Game.prototype = {
     },
   create: function() {
 
-    // this.themeSound = this.game.add.audio('theme1');
-    // this.themeSound.play();
+    this.themeSound = this.game.add.audio('theme1');
+    this.themeSound.play();
 
-    this.game.world.setBounds(0, 0, 20000, this.game.height);
+    this.game.world.setBounds(0, 0, 40000, this.game.height);
     this.ground = this.add.tileSprite(0,this.game.height-70,this.game.world.width,70,'ground');
 
     //create player and walk animation
@@ -53,9 +53,12 @@ InfiniteScroller.Game.prototype = {
 
     let score = 0;
 		let scoreText;
+    this.score = 0;
+    this.scoreText = true;
     this.wraps = 0;
     this.wrapping = true;
     this.points = 0;
+    this.stop = false;
 
     // stars = this.game.add.group();
 		// 		stars.enableBody = true;
@@ -67,6 +70,14 @@ InfiniteScroller.Game.prototype = {
 		// 		}
 
         //stats
+    var style1 = { font: "20px Arial", fill: "#ff0"};
+    var t1 = this.game.add.text(10, 20, "Points:", style1);
+    var t2 = this.game.add.text(this.game.width-300, 20, "Time:", style1);
+    t1.fixedToCamera = true;
+    t2.fixedToCamera = true;
+    // this.refreshStats();
+    this.pointsText = this.game.add.text(80, 18, "", style1);
+    this.pointsText.fixedToCamera = true;
   },
 
     update: function()
@@ -75,8 +86,8 @@ InfiniteScroller.Game.prototype = {
     // this.themeSound.play(); // y u no play dammit
 
     this.game.physics.arcade.collide(this.player, this.ground, this.playerHit, null, this);
-    this.game.physics.arcade.collide(this.stars, this.ground, this.playerHit, null, this);
-    this.game.physics.arcade.collide(this.player, this.stars, this.collectStar, null, this);
+    this.game.physics.arcade.collide(this.stars, this.ground, this.starBounce, null, this);
+    this.game.physics.arcade.collide(this.player, this.stars, this.starHit, null, this);
     this.game.physics.arcade.collide(this.player, this.baddies, this.playerHit, null, this);
 
 
@@ -115,8 +126,6 @@ InfiniteScroller.Game.prototype = {
       else if(this.player.x >= this.game.width) {
         this.wrapping = false;
       }
-
-
   },
 
   playerJump: function() {
@@ -126,6 +135,9 @@ InfiniteScroller.Game.prototype = {
     }
   },
 
+  // playerHit: function(dude, star) {
+  //   console.log('test2');
+  // }
   // generateBaddies: function() {
   //   this.baddies = this.game.add.group();
   //
@@ -154,6 +166,16 @@ InfiniteScroller.Game.prototype = {
   //   }
   // },
 
+  starHit: function(player, stars) {
+    this.themeSound.stop();
+    this.game.state.start('Game')
+    // this.game.time.state.start(Phaser.Timer.SECOND * 2, gameOver, this);
+  },
+
+//   gameOver: function() {
+//   this.game.state.start('Game');
+// },
+
   generateStars: function() {
     this.stars = this.game.add.group();
 
@@ -161,7 +183,7 @@ InfiniteScroller.Game.prototype = {
     this.stars.enableBody = true;
 
     //phaser's random number generator
-    var numStars = this.game.rnd.integerInRange(40, 50)
+    var numStars = this.game.rnd.integerInRange(100, 120)
     var star;
 
     for (var i = 0; i < numStars; i++) {
@@ -177,7 +199,6 @@ InfiniteScroller.Game.prototype = {
 
       star.body.immovable = false;
       star.body.collideWorldBounds = true;
-
     }
   },
 
@@ -187,3 +208,5 @@ InfiniteScroller.Game.prototype = {
       //this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
   }
 };
+
+console.log('test')

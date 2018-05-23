@@ -21,7 +21,7 @@ InfiniteScroller.Menu.prototype = {
 	this.startGame = this.add.text(this.game.width/2 - 235, this.game.height/2, 'Tap Here to Play Game', style);
 	this.startGame.anchor.setTo = (0.5);
 	this.startGame.angle = (2.5+Math.random()*5)*(Math.random()>0.5?1:-1);
-    this.startGameTween = this.add.tween(this.startGame);
+  this.startGameTween = this.add.tween(this.startGame);
 	this.startGameTween.to({angle: -this.startGame.angle},2000+Math.random()*2000,Phaser.Easing.Linear.None,true,0,1500,true);
 	this.startGame.inputEnabled = true;
 
