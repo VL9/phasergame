@@ -6,7 +6,7 @@ InfiniteScroller.Menu = function(){};
 InfiniteScroller.Menu.prototype = {
   create: function() {
 
-	this.themeSound = this.add.audio('theme1');
+	// this.themeSound = this.add.audio('theme1');
 	// this.themeSound.loopFull();
 	// this.playSound = this.add.audio('playsound');
 

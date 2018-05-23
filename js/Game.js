@@ -80,13 +80,16 @@ InfiniteScroller.Game.prototype = {
 
         //stats
     var style1 = { font: "20px Arial", fill: "#ff0"};
-    var t1 = this.game.add.text(10, 20, "Points:", style1);
-    var t2 = this.game.add.text(this.game.width-300, 20, "Time:", style1);
+    var t1 = this.game.add.text(10, 20, "Time:", style1);
+    var t2 = this.game.add.text(this.game.width-300, 20, "Points:", style1);
     t1.fixedToCamera = true;
     t2.fixedToCamera = true;
     // this.refreshStats();
     this.pointsText = this.game.add.text(80, 18, "", style1);
     this.pointsText.fixedToCamera = true;
+    this.pointsTime = this.game.add.text(80, 18, this.game.time.totalElapsedSeconds(), style1);
+    this.pointsTime.fixedToCamera = true;
+
   },
 
     update: function()
