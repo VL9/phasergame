@@ -20,6 +20,10 @@ InfiniteScroller.Preload.prototype = {
     this.load.image('platform-1', 'assets/platform-1.png');
     this.load.image('platform-2', 'assets/platform-2.png');
     this.load.image('platform-3', 'assets/platform-3.png');
+    this.load.image('clouds', 'assets/clouds.png');
+    this.load.image('far-grounds', 'assets/far-grounds.png');
+    this.load.image('sea', 'assets/sea.png');
+    this.load.image('sky', 'assets/sky.png');
     this.load.audio('theme1', 'assets/theme1.mp3');
 
 

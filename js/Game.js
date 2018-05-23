@@ -11,6 +11,15 @@ InfiniteScroller.Game.prototype = {
     this.themeSound = this.game.add.audio('theme1');
     this.themeSound.play();
 
+    var sky = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'sky');
+		sky.fixedToCamera = true;
+
+    this.clouds = this.game.add.tileSprite(0, this.game.height-this.game.cache.getImage('clouds').height-64, this.game.width, this.game.world.height, 'clouds');
+    this.clouds.fixedToCamera = true;
+
+    this.farGrounds = this.game.add.tileSprite(0, this.game.height-this.game.cache.getImage('far-grounds').height-64, this.game.width, this.game.world.height, 'far-grounds');
+    this.farGrounds.fixedToCamera = true;
+
     this.game.world.setBounds(0, 0, 40000, this.game.height);
     this.ground = this.add.tileSprite(0,this.game.height-70,this.game.world.width,70,'ground');
 
